@@ -4,7 +4,7 @@ public class BDD :  DbContext{
     //configurando o sql
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
-        builder.UseMySQL("server=localhost;port=3606;database=ifode;user=root;passaword=123");
+        builder.UseMySQL("server=localhost;port=3306;database=projeto;user=root;password=1234");
     }
 
 
