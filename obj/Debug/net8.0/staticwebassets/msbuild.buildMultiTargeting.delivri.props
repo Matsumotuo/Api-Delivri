@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\delivri.props" />
+</Project>
