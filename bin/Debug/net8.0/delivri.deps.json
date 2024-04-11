@@ -8,8 +8,10 @@
     ".NETCoreApp,Version=v8.0": {
       "delivri/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.4",
           "Microsoft.EntityFrameworkCore": "8.0.4",
           "Microsoft.EntityFrameworkCore.Design": "8.0.4",
+          "Microsoft.EntityFrameworkCore.InMemory": "8.0.4",
           "MySql.EntityFrameworkCore": "8.0.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
@@ -67,6 +69,17 @@
           "lib/net6.0/K4os.Hash.xxHash.dll": {
             "assemblyVersion": "1.0.8.0",
             "fileVersion": "1.0.8.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/8.0.4": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.4"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {
+            "assemblyVersion": "8.0.4.0",
+            "fileVersion": "8.0.424.17014"
           }
         }
       },
@@ -332,6 +345,17 @@
         },
         "runtime": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "8.0.4.0",
+            "fileVersion": "8.0.424.16902"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.InMemory/8.0.4": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.4"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
             "assemblyVersion": "8.0.4.0",
             "fileVersion": "8.0.424.16902"
           }
@@ -843,6 +867,13 @@
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/8.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-l/oV6zVaTbnsz6aqHFzq6H6NZUoAI38vg2iqGaf7slsPdailnjr9aEFWyc5YNV4tBu/6qQnJpR/6lEsHclLihw==",
+      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/8.0.4",
+      "hashPath": "microsoft.aspnetcore.diagnostics.entityframeworkcore.8.0.4.nupkg.sha512"
+    },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -912,6 +943,13 @@
       "sha512": "sha512-QD5/h3+h4N7GlUaA4bzaYFW9CoeB7ne2KMiDIENIT0GPx+E6up/v9fDA36FAS3NIq9zeKUAQgN8aj6IwE7tMGw==",
       "path": "microsoft.entityframeworkcore.design/8.0.4",
       "hashPath": "microsoft.entityframeworkcore.design.8.0.4.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.InMemory/8.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3fj0V/NKG66LLwUtoDofSyogku1ueF78uUIdGPEJJhS3MW7w3xLsizMaDYX+ooR74IM96YJI5N3tyOU5FZiiwg==",
+      "path": "microsoft.entityframeworkcore.inmemory/8.0.4",
+      "hashPath": "microsoft.entityframeworkcore.inmemory.8.0.4.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/8.0.4": {
       "type": "package",

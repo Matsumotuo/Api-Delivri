@@ -16,7 +16,7 @@ app.MapGet("/lojas/{id}", ()=> "Lojas por id");
 app.MapGet("/lojas/pedidos/{id}", ()=> "Pedidos na loja(id)");
 
 
-app.MapPost("/pedidos", ()=> "Pedidos");
+app.MapPost("lojas/pedidos", ()=> "Pedidos");
 
 app.MapPut("/pedidos/{id}", ()=> "Atualizar pedidos");
 
