@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 
 public class BDD :  DbContext{
     
-     public BDD(DbContextOptions<BDD> options):base(options){    }
+     public BDD(DbContextOptions<BDD> options)
+     : base(options){    }
 
     //configurando o sql
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -11,7 +12,7 @@ public class BDD :  DbContext{
     }
 
     //tabelas do banco de dados ficam junto no banco de dados
-    public DbSet<Lojas> Lojas { get; set; }
+    public DbSet<Lojas> Lojas  => Set<Lojas>();
     //add as outras tabelas
 
 }

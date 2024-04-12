@@ -1,7 +1,15 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-//Config swag
+//builder.Services.AddDbContext<BDD>(
+//    options => options.UseInMemoryDatabase("lojas")
+//);
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddDbContext<BDD>();
 
+//Config swag
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -11,12 +19,30 @@ app.UseSwaggerUI();
 
 
 app.MapGet("/", () => "Bem Vindo ao Ifode bebezinhu!");
-app.MapGet("/lojas", () => "Lojas");
-app.MapGet("/lojas/{id}", ()=> "Lojas por id");
-app.MapGet("/lojas/pedidos/{id}", ()=> "Pedidos na loja(id)");
+app.MapGet("/lojas", async (BDD db) => {
+
+    //select * from Lojas
+    return await db.Lojas.ToListAsync();
+
+});
+app.MapGet("/lojas/pedidos", async (BDD db)=>{
+    //select * from Lojas t where t.Entrega = true
+    return await db.Lojas.Where(t => t.Entrega).ToListAsync();
+
+});
+app.MapGet("/lojas/pedidos/{id}", async (int id,BDD db) =>{
+    
+    return await db.Lojas.FindAsync(id)
+        is Lojas lojas ? Results.Ok(lojas) : Results.NotFound();
+});
 
 
-app.MapPost("lojas/pedidos", ()=> "Pedidos");
+app.MapPost("/pedidos", async (Lojas lojas, BDD db) => {db.Lojas.Add(lojas);
+    //insert into
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/lojas/pedidos/{lojas.Id}",lojas);
+});
 
 app.MapPut("/pedidos/{id}", ()=> "Atualizar pedidos");
 

@@ -7,31 +7,33 @@ GET http://localhost:5206/
 GET http://localhost:5206/lojas
 
 ###
-GET http://localhost:5206/lojas/0
+GET http://localhost:5206/lojas/pedidos
 
 ###
 GET http://localhost:5206/lojas/pedidos/1
 
 ###REQUISIÇÂO POST
 
-POST http://localhost:5206/lojas/pedidos
+POST http://localhost:5206/pedidos
 Content-Type: application/json
 
 {
-    "Id":1,
     "Nome": "Adega Brasil",
-    "Taxa": "R$ 10",
+    "Taxa": 10,
     "Nota": 8,
-    "Entrega":false
+    "Entrega": true
 }
 
 ###REQUISIÇÂO PUT
 
 PUT  http://localhost:5206/pedidos/1
+Content-Type: application/json
 
 {
-    "Nome": "Comprar verdes",
-    "Concluida":false
+    "Nome": "Adega Brasil",
+    "Taxa": 10,
+    "Nota": 8,
+    "Entrega":false
 }
 
 ###REQUISIÇÂO DELETE

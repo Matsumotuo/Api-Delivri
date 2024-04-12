@@ -7,10 +7,9 @@ public class Lojas{
 
     public float Nota { get; set; }
 
-    public string? Entrega { get; set; }
+    public bool Entrega { get; set; }
 
-    public Lojas(int Id,string Nome, float Taxa, float Nota, string Entrega) {
-        this.Id = Id;
+    public Lojas(string Nome, float Taxa, float Nota, bool Entrega) {
         this.Nome = Nome;   
         this.Taxa = Taxa; 
         this.Nota = Nota;

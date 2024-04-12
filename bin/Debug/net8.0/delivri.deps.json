@@ -9,7 +9,6 @@
       "delivri/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.4",
-          "Microsoft.EntityFrameworkCore": "8.0.4",
           "Microsoft.EntityFrameworkCore.Design": "8.0.4",
           "Microsoft.EntityFrameworkCore.InMemory": "8.0.4",
           "MySql.EntityFrameworkCore": "8.0.0",
