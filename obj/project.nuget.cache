@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5o0Er/2AB4uYhtZ9EJc2K+2ildkIDB+qXaIG7B0VnDdbu4mfLZK6Cxy67gx4IVp+5z4oa967G5BOKUHAmRHorA==",
+  "dgSpecHash": "UHQmHBwQSv7CXWmlRoT5Tyfy6YLCLIP30blb+UXkC8YYRu2JTNKpsaSWogB8tnZmrMWp02beP0XOBFhWCllgpg==",
   "success": true,
   "projectFilePath": "C:\\Users\\joaov\\Documents\\delivri\\delivri.csproj",
   "expectedPackageFiles": [
@@ -21,7 +21,6 @@
     "C:\\Users\\joaov\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.4\\microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",
     "C:\\Users\\joaov\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.4\\microsoft.entityframeworkcore.analyzers.8.0.4.nupkg.sha512",
     "C:\\Users\\joaov\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.4\\microsoft.entityframeworkcore.design.8.0.4.nupkg.sha512",
-    "C:\\Users\\joaov\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\8.0.4\\microsoft.entityframeworkcore.inmemory.8.0.4.nupkg.sha512",
     "C:\\Users\\joaov\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.4\\microsoft.entityframeworkcore.relational.8.0.4.nupkg.sha512",
     "C:\\Users\\joaov\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\joaov\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",

@@ -126,4 +126,3 @@ C:\Users\joaov\Documents\delivri\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger
 C:\Users\joaov\Documents\delivri\obj\Debug\net8.0\delivri.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\joaov\Documents\delivri\obj\Debug\net8.0\delivri.sourcelink.json
 C:\Users\joaov\Documents\delivri\bin\Debug\net8.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
-C:\Users\joaov\Documents\delivri\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll

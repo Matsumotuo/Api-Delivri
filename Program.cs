@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<BDD>(
-//    options => options.UseInMemoryDatabase("lojas")
-//);
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+/*builder.Services.AddDbContext<BDD>(
+    options => options.UseInMemoryDatabase("lojas")
+);
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();*/
 builder.Services.AddDbContext<BDD>();
 
 //Config swag
@@ -37,15 +37,40 @@ app.MapGet("/lojas/pedidos/{id}", async (int id,BDD db) =>{
 });
 
 
-app.MapPost("/pedidos", async (Lojas lojas, BDD db) => {db.Lojas.Add(lojas);
+app.MapPost("/pedidos", async (Lojas lojas, BDD db) => {
+    db.Lojas.Add(lojas);
     //insert into
     await db.SaveChangesAsync();
 
     return Results.Created($"/lojas/pedidos/{lojas.Id}",lojas);
 });
 
-app.MapPut("/pedidos/{id}", ()=> "Atualizar pedidos");
+app.MapPut("/pedidos/{id}", async (int id, Lojas PedidoAlterado, BDD db)=>{
+    // select * from tarefas where Id = ?
+    var lojas = await db.Lojas.FindAsync(id);
+    if (lojas == null) return Results.NotFound();
 
-app.MapDelete("/pedidos/{id}", ()=> "Deletar pedido");
+    lojas.Nome = PedidoAlterado.Nome;
+    lojas.Taxa = PedidoAlterado.Taxa;
+    lojas.Nota = PedidoAlterado.Nota;
+    lojas.Entrega = PedidoAlterado.Entrega;
+
+    // update from ...
+    await db.SaveChangesAsync();
+    return Results.NoContent();
+
+});
+
+app.MapDelete("/pedidos/{id}", async (int id, BDD db)=>{
+    if (await db.Lojas.FindAsync(id) is Lojas lojas)
+    {
+        db.Lojas.Remove(lojas);
+        // delete from ... where id = ?
+        await db.SaveChangesAsync();
+        return Results.NoContent();
+    }
+    return Results.NotFound();
+
+});
 
 app.Run();
