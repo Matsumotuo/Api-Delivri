@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace delivri.Migrations
 {
     [DbContext(typeof(BDD))]
-    partial class BDDModelSnapshot : ModelSnapshot
+    [Migration("20240414200117_NovasClasses")]
+    partial class NovasClasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,15 +33,10 @@ namespace delivri.Migrations
                     b.Property<string>("ItemNome")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("LojasId")
-                        .HasColumnType("int");
-
                     b.Property<float>("Preco")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LojasId");
 
                     b.ToTable("Cardapio");
                 });
@@ -89,13 +87,6 @@ namespace delivri.Migrations
                     b.ToTable("Pedido");
                 });
 
-            modelBuilder.Entity("Cardapio", b =>
-                {
-                    b.HasOne("Lojas", null)
-                        .WithMany("Cardapios")
-                        .HasForeignKey("LojasId");
-                });
-
             modelBuilder.Entity("Pedido", b =>
                 {
                     b.HasOne("Cardapio", null)
@@ -106,11 +97,6 @@ namespace delivri.Migrations
             modelBuilder.Entity("Cardapio", b =>
                 {
                     b.Navigation("Pedidos");
-                });
-
-            modelBuilder.Entity("Lojas", b =>
-                {
-                    b.Navigation("Cardapios");
                 });
 #pragma warning restore 612, 618
         }

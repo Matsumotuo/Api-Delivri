@@ -9,11 +9,14 @@ public class Lojas{
 
     public bool Entrega { get; set; }
 
+    //public List<Cardapio> Cardapios { get; set; }
+
     public Lojas(string Nome, float Taxa, float Nota, bool Entrega) {
         this.Nome = Nome;   
         this.Taxa = Taxa; 
         this.Nota = Nota;
         this.Entrega = Entrega;
+        //Cardapios = new List<Cardapio>();
     }
 
 }

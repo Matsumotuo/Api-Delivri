@@ -25,35 +25,37 @@ app.MapGet("/lojas", async (BDD db) => {
     return await db.Lojas.ToListAsync();
 
 });
-app.MapGet("/lojas/pedidos", async (BDD db)=>{
+app.MapGet("/lojas/infos", async (BDD db)=>{
     //select * from Lojas t where t.Entrega = true
     return await db.Lojas.Where(t => t.Entrega).ToListAsync();
 
+    //traz as entregas feita(true)
+
 });
-app.MapGet("/lojas/pedidos/{id}", async (int id,BDD db) =>{
+app.MapGet("/lojas/infos/{id}", async (int id,BDD db) =>{
     
     return await db.Lojas.FindAsync(id)
         is Lojas lojas ? Results.Ok(lojas) : Results.NotFound();
 });
 
 
-app.MapPost("/pedidos", async (Lojas lojas, BDD db) => {
+app.MapPost("/lojas", async (Lojas lojas, BDD db) => {
     db.Lojas.Add(lojas);
     //insert into
     await db.SaveChangesAsync();
 
-    return Results.Created($"/lojas/pedidos/{lojas.Id}",lojas);
+    return Results.Created($"/lojas/{lojas.Id}",lojas);
 });
 
-app.MapPut("/pedidos/{id}", async (int id, Lojas PedidoAlterado, BDD db)=>{
+app.MapPut("/lojas/{id}", async (int id, Lojas LojaAlterado, BDD db)=>{
     // select * from tarefas where Id = ?
     var lojas = await db.Lojas.FindAsync(id);
     if (lojas == null) return Results.NotFound();
 
-    lojas.Nome = PedidoAlterado.Nome;
-    lojas.Taxa = PedidoAlterado.Taxa;
-    lojas.Nota = PedidoAlterado.Nota;
-    lojas.Entrega = PedidoAlterado.Entrega;
+    lojas.Nome = LojaAlterado.Nome;
+    lojas.Taxa = LojaAlterado.Taxa;
+    lojas.Nota = LojaAlterado.Nota;
+    lojas.Entrega = LojaAlterado.Entrega;
 
     // update from ...
     await db.SaveChangesAsync();
@@ -61,7 +63,7 @@ app.MapPut("/pedidos/{id}", async (int id, Lojas PedidoAlterado, BDD db)=>{
 
 });
 
-app.MapDelete("/pedidos/{id}", async (int id, BDD db)=>{
+app.MapDelete("/lojas/{id}", async (int id, BDD db)=>{
     if (await db.Lojas.FindAsync(id) is Lojas lojas)
     {
         db.Lojas.Remove(lojas);

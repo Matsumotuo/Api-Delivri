@@ -13,6 +13,10 @@ public class BDD :  DbContext{
 
     //tabelas do banco de dados ficam junto no banco de dados
     public DbSet<Lojas> Lojas  => Set<Lojas>();
+
+    public DbSet<Cardapio> Cardapio => Set<Cardapio>();
+
+    public DbSet<Pedido> Pedido => Set<Pedido>();
     //add as outras tabelas
 
 }
