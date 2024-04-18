@@ -1,8 +1,6 @@
-using System.Collections.ObjectModel;
-
 public class Cardapio{
 
-    public Cardapio(){Lojas = new List<Lojas>(){};}
+    public Cardapio(){Loja = new List<Loja>(){};}
     public int Id { get; set; }
 
     public int Item { get; set; }
@@ -11,7 +9,7 @@ public class Cardapio{
 
     public float Preco { get; set; }
 
-    public List<Lojas> Lojas{ get; set; }
+    public List<Loja> Loja{ get; set; }
 
    /* public Cardapio (int Item, String ItemNome, float Preco){
         this.Item = Item;

@@ -1,6 +1,6 @@
-public class Lojas{
+public class Loja{
 
-    public Lojas(){ Cardapios = new List<Cardapio>(){}; }
+    public Loja(){ Cardapios = new List<Cardapio>(){}; } // heranca ok
     public int Id { get; set; }
     public string? Nome { get; set; }
 

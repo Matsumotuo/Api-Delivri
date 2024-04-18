@@ -13,7 +13,7 @@ public class BDD :  DbContext{
 
     protected override void OnModelCreating(ModelBuilder mb){
 
-        mb.Entity<Endereco>() // herança entre usuario e endereco
+        mb.Entity<Endereco>() // relacionamento entre usuario e endereco
         .HasMany(e => e.Usuarios)
         .WithMany(u => u.Enderecos)
         .UsingEntity<Dictionary<string, object>>(
@@ -22,22 +22,26 @@ public class BDD :  DbContext{
             j => j.HasOne<Endereco>().WithMany().HasForeignKey("EnderecoId")
         );
 
-         mb.Entity<Lojas>() // herança entre loja e cardapio
+         mb.Entity<Loja>() // relacionamento entre loja e cardapio
         .HasMany(c => c.Cardapios)
-        .WithMany(l => l.Lojas)
+        .WithMany(l => l.Loja)
         .UsingEntity<Dictionary<string, object>>(
-            "LojasCardapio",
+            "LojaCardapio",
             j => j.HasOne<Cardapio>().WithMany().HasForeignKey("CardapioId"),
-            j => j.HasOne<Lojas>().WithMany().HasForeignKey("LojasId")
+            j => j.HasOne<Loja>().WithMany().HasForeignKey("LojaId")
         );
     }
 
     //tabelas do banco de dados ficam junto no banco de dados
-    public DbSet<Lojas> Lojas  => Set<Lojas>();
+    public DbSet<Loja> Loja  => Set<Loja>();
 
     public DbSet<Cardapio> Cardapio => Set<Cardapio>();
 
     public DbSet<Pedido> Pedido => Set<Pedido>();
+
+    public DbSet<Usuario> Usuario => Set<Usuario>();
+
+    public DbSet<Endereco> Endereco => Set<Endereco>(); 
     //add as outras tabelas
 
 }

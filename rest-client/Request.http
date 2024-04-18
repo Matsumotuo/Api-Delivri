@@ -18,22 +18,22 @@ POST http://localhost:5206/lojas HTTP/1.1
 Content-Type: application/json
 
 {
-    "Nome": "Adega Kelcio",
-    "Taxa": 25,
-    "Nota": 8,
+    "Nome": "Be Happy",
+    "Taxa": 1,
+    "Nota": 80,
     "Entrega": false
 }
 
 ###REQUISIÇÂO PUT
 
-PUT  http://localhost:5206/lojas/6
+PUT  http://localhost:5206/lojas/9
 Content-Type: application/json
 
 {
-    "Nome": "Adega Henrique",
-    "Taxa": 10,
-    "Nota": 8,
-    "Entrega":false
+    "Nome": "Adega Kelcio",
+    "Taxa": 0,
+    "Nota": 10,
+    "Entrega": false
 }
 
 ###REQUISIÇÂO DELETE

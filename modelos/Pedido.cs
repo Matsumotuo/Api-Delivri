@@ -1,17 +1,15 @@
-public class Pedido
-{
+public class Pedido{
+    public int PedidoId { get; set; }
 
-    public int Id { get; set; }
-
-    public string Detalhes { get; set; } 
+    public string? Detalhes { get; set; } 
 
     public int Quantidade { get; set; } 
 
 
-    public Pedido(int Id,string detalhes, int quantidade)
+    /*public Pedido(int Id,string detalhes, int quantidade)
     {
         this.Id = Id;
         this.Detalhes = detalhes;
         this.Quantidade = quantidade;
-    }
+    }*/
 }
