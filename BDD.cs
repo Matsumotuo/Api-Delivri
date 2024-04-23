@@ -11,7 +11,7 @@ public class BDD :  DbContext{
         builder.UseMySQL("server=localhost;port=3306;database=projeto;user=root;password=1234");
     }
 
-    protected override void OnModelCreating(ModelBuilder mb){
+   /* protected override void OnModelCreating(ModelBuilder mb){
 
         mb.Entity<Endereco>() // relacionamento entre usuario e endereco
         .HasMany(e => e.Usuarios)
@@ -24,13 +24,13 @@ public class BDD :  DbContext{
 
          mb.Entity<Loja>() // relacionamento entre loja e cardapio
         .HasMany(c => c.Cardapios)
-        .WithMany(l => l.Loja)
+        .WithMany(l => l.Lojas)
         .UsingEntity<Dictionary<string, object>>(
             "LojaCardapio",
             j => j.HasOne<Cardapio>().WithMany().HasForeignKey("CardapioId"),
             j => j.HasOne<Loja>().WithMany().HasForeignKey("LojaId")
         );
-    }
+    }*/
 
     //tabelas do banco de dados ficam junto no banco de dados
     public DbSet<Loja> Loja  => Set<Loja>();

@@ -1,6 +1,6 @@
 public class Loja{
 
-    public Loja(){ Cardapios = new List<Cardapio>(){}; } // heranca ok
+    //public Loja(){ Cardapios = new List<Cardapio>(){}; } // heranca ok
     public int Id { get; set; }
     public string? Nome { get; set; }
 
@@ -10,13 +10,26 @@ public class Loja{
 
     public bool Entrega { get; set; }
 
-    public List<Cardapio> Cardapios{ get; set; }    
+    //public List<Cardapio> Cardapios{ get; set; }    
 
-    /*public Lojas(string Nome, float Taxa, float Nota, bool Entrega) {
-        this.Nome = Nome;   
-        this.Taxa = Taxa; 
-        this.Nota = Nota;
-        this.Entrega = Entrega;
+    /*{
+  "id": 0,
+  "nome": "string",
+  "taxa": 0,
+  "nota": 0,
+  "entrega": true,
+  "cardapios": [
+    {
+      "id": 0,
+      "item": 0,
+      "itemNome": "string",
+      "preco": 0,
+      "loja": [
+        "string"
+      ]
+    }
+  ]
+}
     }*/
 
 }
