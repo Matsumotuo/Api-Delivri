@@ -17,6 +17,6 @@ app.MapGet("/", () => "Bem Vindo ao Ifode bebezinhu!");
 
 //API'S foram isoladas
 app.MapLojaApi();
-
+app.MapCardapioApi();
 
 app.Run();

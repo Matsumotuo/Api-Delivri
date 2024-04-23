@@ -1,6 +1,6 @@
 public class Endereco{
     
-    public Endereco(){ Usuarios = new List<Usuario>(){ }; }
+    //public Endereco(){ Usuarios = new List<Usuario>(){ }; }
 
     public int Id { get; set; }
 
@@ -10,7 +10,7 @@ public class Endereco{
 
     public int CEP { get; set;}
 
-    public List<Usuario> Usuarios { get; set; }
+    //public List<Usuario> Usuarios { get; set; }
 
 
 }
