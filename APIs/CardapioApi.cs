@@ -10,7 +10,7 @@ public static class CardapioApi{
         });
 
 
-        group.MapGet("/Cardapios/cardapio/{id}", async (int id, BDD db) =>
+        group.MapGet("/cardapioid/{id}", async (int id, BDD db) =>
         {
 
             return await db.Cardapio.FindAsync(id)
@@ -18,16 +18,16 @@ public static class CardapioApi{
         });
 
         //recebe os dados, as informações
-        group.MapPost("/Cardapios", async (Cardapio cardapios, BDD db) =>
+        group.MapPost("/novocardapio", async (Cardapio cardapios, BDD db) =>
         {
             db.Cardapio.Add(cardapios);
             //insert into
             await db.SaveChangesAsync();
 
-            return Results.Created($"/Cardapios/{cardapios.Id}", cardapios);
+            return Results.Created($"/cardapio/{cardapios.Id}", cardapios);
         });
 
-        group.MapPut("/Cardapios/cardapio{id}", async (int id, Cardapio CardapioAlterado, BDD db) =>
+        group.MapPut("/alterarcardapio/{id}", async (int id, Cardapio CardapioAlterado, BDD db) =>
         {
             // select * from tarefas where Id = ?
             var Cardapios = await db.Cardapio.FindAsync(id);
@@ -43,7 +43,7 @@ public static class CardapioApi{
 
         });
 
-        group.MapDelete("/cardapio/{id}", async (int id, BDD db) =>
+        group.MapDelete("/deletarcardapio/{id}", async (int id, BDD db) =>
         {
             if (await db.Cardapio.FindAsync(id) is Cardapio Cardapios)
             {

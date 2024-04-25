@@ -46,8 +46,11 @@ namespace delivri.Migrations
                     b.Property<int>("CEP")
                         .HasColumnType("int");
 
-                    b.Property<string>("Numero")
+                    b.Property<string>("Complemento")
                         .HasColumnType("longtext");
+
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
 
                     b.Property<string>("Rua")
                         .HasColumnType("longtext");
@@ -57,7 +60,7 @@ namespace delivri.Migrations
                     b.ToTable("Endereco");
                 });
 
-            modelBuilder.Entity("Lojas", b =>
+            modelBuilder.Entity("Loja", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,22 +80,7 @@ namespace delivri.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Lojas");
-                });
-
-            modelBuilder.Entity("LojasCardapio", b =>
-                {
-                    b.Property<int>("CardapioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LojasId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CardapioId", "LojasId");
-
-                    b.HasIndex("LojasId");
-
-                    b.ToTable("LojasCardapio");
+                    b.ToTable("Loja");
                 });
 
             modelBuilder.Entity("Pedido", b =>
@@ -102,8 +90,10 @@ namespace delivri.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Detalhes")
-                        .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
@@ -128,51 +118,6 @@ namespace delivri.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
-                });
-
-            modelBuilder.Entity("UsuarioEndereco", b =>
-                {
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("EnderecoId", "UsuarioId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("UsuarioEndereco");
-                });
-
-            modelBuilder.Entity("LojasCardapio", b =>
-                {
-                    b.HasOne("Cardapio", null)
-                        .WithMany()
-                        .HasForeignKey("CardapioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Lojas", null)
-                        .WithMany()
-                        .HasForeignKey("LojasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("UsuarioEndereco", b =>
-                {
-                    b.HasOne("Endereco", null)
-                        .WithMany()
-                        .HasForeignKey("EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

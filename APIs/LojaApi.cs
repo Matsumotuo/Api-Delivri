@@ -15,7 +15,7 @@ public static class LojaApi
             return await db.Loja.ToListAsync();
 
         });
-        group.MapGet("/lojas/infos", async (BDD db) =>
+        group.MapGet("/infos", async (BDD db) =>
         {
             //select * from Loja t where t.Entrega = true
             return await db.Loja.Where(t => t.Entrega).ToListAsync();
@@ -23,7 +23,7 @@ public static class LojaApi
             //traz as entregas feita(true)
 
         });
-        group.MapGet("/lojas/infos/{id}", async (int id, BDD db) =>
+        group.MapGet("/infos/{id}", async (int id, BDD db) =>
         {
 
             return await db.Loja.FindAsync(id)
@@ -31,7 +31,7 @@ public static class LojaApi
         });
 
         //recebe os dados, as informações
-        group.MapPost("/lojas", async (Loja lojas, BDD db) =>
+        group.MapPost("/addloja", async (Loja lojas, BDD db) =>
         {
             db.Loja.Add(lojas);
             //insert into
@@ -40,7 +40,7 @@ public static class LojaApi
             return Results.Created($"/lojas/{lojas.Id}", lojas);
         });
 
-        group.MapPut("/lojas/{id}", async (int id, Loja LojaAlterado, BDD db) =>
+        group.MapPut("/trocarloja/{id}", async (int id, Loja LojaAlterado, BDD db) =>
         {
             // select * from tarefas where Id = ?
             var lojas = await db.Loja.FindAsync(id);
@@ -57,7 +57,7 @@ public static class LojaApi
 
         });
 
-        group.MapDelete("/lojas/{id}", async (int id, BDD db) =>
+        group.MapDelete("/deletar/{id}", async (int id, BDD db) =>
         {
             if (await db.Loja.FindAsync(id) is Loja lojas)
             {

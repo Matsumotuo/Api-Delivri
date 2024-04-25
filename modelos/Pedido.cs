@@ -1,4 +1,7 @@
 public class Pedido{
+
+    public int Id{ get; set; }
+
     public int PedidoId { get; set; }
 
     public string? Detalhes { get; set; } 

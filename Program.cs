@@ -13,10 +13,13 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 
-app.MapGet("/", () => "Bem Vindo ao Ifode bebezinhu!");
+app.MapGet("/", () => "Bem Vindo ao Delivris!");
 
 //API'S foram isoladas
 app.MapLojaApi();
 app.MapCardapioApi();
+app.MapPedidoApi();
+app.MapEnderecoApi();
+app.MapUsuarioApi();
 
 app.Run();
