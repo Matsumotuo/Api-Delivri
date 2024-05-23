@@ -4174,11 +4174,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joaov\\Documents\\Trabalho csharp\\delivri\\delivri.csproj",
+      "projectUniqueName": "C:\\Users\\joaov\\Documents\\Api-Delivri\\delivri.csproj",
       "projectName": "delivri",
-      "projectPath": "C:\\Users\\joaov\\Documents\\Trabalho csharp\\delivri\\delivri.csproj",
+      "projectPath": "C:\\Users\\joaov\\Documents\\Api-Delivri\\delivri.csproj",
       "packagesPath": "C:\\Users\\joaov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joaov\\Documents\\Trabalho csharp\\delivri\\obj\\",
+      "outputPath": "C:\\Users\\joaov\\Documents\\Api-Delivri\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\joaov\\AppData\\Roaming\\NuGet\\NuGet.Config"

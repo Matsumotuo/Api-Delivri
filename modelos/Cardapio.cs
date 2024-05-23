@@ -1,6 +1,6 @@
 public class Cardapio{
 
-    //public Cardapio(){Lojas = new List<Loja>(){};} Relacionamento
+     //relacionamento m para m 
     public int Id { get; set; }
 
     public int Item { get; set; }
@@ -9,7 +9,7 @@ public class Cardapio{
 
     public float Preco { get; set; }
 
-    //public List<Loja> Lojas{ get; set; } Relacionamento
+    public List<Loja>? Lojas { get; set; }
 
    /* public Cardapio (int Item, String ItemNome, float Preco){
         this.Item = Item;

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace delivri.Migrations
 {
     [DbContext(typeof(BDD))]
-    [Migration("20240425202931_LastVersion")]
-    partial class LastVersion
+    [Migration("20240516200418_VersaoDois")]
+    partial class VersaoDois
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,6 +86,21 @@ namespace delivri.Migrations
                     b.ToTable("Loja");
                 });
 
+            modelBuilder.Entity("LojaCardapio", b =>
+                {
+                    b.Property<int>("CardapioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LojaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CardapioId", "LojaId");
+
+                    b.HasIndex("LojaId");
+
+                    b.ToTable("LojaCardapio");
+                });
+
             modelBuilder.Entity("Pedido", b =>
                 {
                     b.Property<int>("Id")
@@ -121,6 +136,21 @@ namespace delivri.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("LojaCardapio", b =>
+                {
+                    b.HasOne("Cardapio", null)
+                        .WithMany()
+                        .HasForeignKey("CardapioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Loja", null)
+                        .WithMany()
+                        .HasForeignKey("LojaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

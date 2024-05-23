@@ -6,7 +6,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace delivri.Migrations
 {
     /// <inheritdoc />
-    public partial class LastVersion : Migration
+    public partial class VersaoInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -94,25 +94,58 @@ namespace delivri.Migrations
                     table.PrimaryKey("PK_Usuario", x => x.Id);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "LojaCardapio",
+                columns: table => new
+                {
+                    CardapioId = table.Column<int>(type: "int", nullable: false),
+                    LojaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LojaCardapio", x => new { x.CardapioId, x.LojaId });
+                    table.ForeignKey(
+                        name: "FK_LojaCardapio_Cardapio_CardapioId",
+                        column: x => x.CardapioId,
+                        principalTable: "Cardapio",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LojaCardapio_Loja_LojaId",
+                        column: x => x.LojaId,
+                        principalTable: "Loja",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LojaCardapio_LojaId",
+                table: "LojaCardapio",
+                column: "LojaId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cardapio");
-
-            migrationBuilder.DropTable(
                 name: "Endereco");
 
             migrationBuilder.DropTable(
-                name: "Loja");
+                name: "LojaCardapio");
 
             migrationBuilder.DropTable(
                 name: "Pedido");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "Cardapio");
+
+            migrationBuilder.DropTable(
+                name: "Loja");
         }
     }
 }
