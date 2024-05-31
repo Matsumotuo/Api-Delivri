@@ -135,6 +135,21 @@ namespace delivri.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("UsuarioEndereco", b =>
+                {
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnderecoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UsuarioId", "EnderecoId");
+
+                    b.HasIndex("EnderecoId");
+
+                    b.ToTable("UsuarioEndereco", (string)null);
+                });
+
             modelBuilder.Entity("LojaCardapio", b =>
                 {
                     b.HasOne("Cardapio", null)
@@ -146,6 +161,21 @@ namespace delivri.Migrations
                     b.HasOne("Loja", null)
                         .WithMany()
                         .HasForeignKey("LojaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("UsuarioEndereco", b =>
+                {
+                    b.HasOne("Endereco", null)
+                        .WithMany()
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

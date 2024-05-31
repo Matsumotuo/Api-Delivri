@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace delivri.Migrations
 {
     [DbContext(typeof(BDD))]
-    [Migration("20240516200418_VersaoDois")]
-    partial class VersaoDois
+    [Migration("20240531003502_AddTabelas")]
+    partial class AddTabelas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,17 +88,17 @@ namespace delivri.Migrations
 
             modelBuilder.Entity("LojaCardapio", b =>
                 {
-                    b.Property<int>("CardapioId")
-                        .HasColumnType("int");
-
                     b.Property<int>("LojaId")
                         .HasColumnType("int");
 
-                    b.HasKey("CardapioId", "LojaId");
+                    b.Property<int>("CardapioId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("LojaId");
+                    b.HasKey("LojaId", "CardapioId");
 
-                    b.ToTable("LojaCardapio");
+                    b.HasIndex("CardapioId");
+
+                    b.ToTable("LojaCardapio", (string)null);
                 });
 
             modelBuilder.Entity("Pedido", b =>
@@ -138,6 +138,21 @@ namespace delivri.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("UsuarioEndereco", b =>
+                {
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnderecoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UsuarioId", "EnderecoId");
+
+                    b.HasIndex("EnderecoId");
+
+                    b.ToTable("UsuarioEndereco", (string)null);
+                });
+
             modelBuilder.Entity("LojaCardapio", b =>
                 {
                     b.HasOne("Cardapio", null)
@@ -149,6 +164,21 @@ namespace delivri.Migrations
                     b.HasOne("Loja", null)
                         .WithMany()
                         .HasForeignKey("LojaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("UsuarioEndereco", b =>
+                {
+                    b.HasOne("Endereco", null)
+                        .WithMany()
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -13,19 +13,19 @@ public class Loja
   public List<Cardapio>? Cardapios { get; set; }
 
   /*{
-"id": 0,
-"nome": "string",
-"taxa": 0,
-"nota": 0,
-"entrega": true,
-"cardapios": [
-  {
-    "id": 0,
-    "item": 0,
-    "itemNome": "string",
-    "preco": 0,
-    "loja": [
-      "string"
+      "id": 0,
+      "nome": "string",
+      "taxa": 0,
+      "nota": 0,
+      "entrega": true,
+      "cardapios": [
+      {
+        "id": 0,
+        "item": 0,
+        "itemNome": "string",
+        "preco": 0,
+        "loja": [
+          "string"
     ]
   }
 ]

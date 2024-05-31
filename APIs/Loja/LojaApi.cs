@@ -45,7 +45,7 @@ public static class LojaApi
         }); 
 
         async Task<List<Cardapio>> SalvarCardapio(Loja lojas, BDD db)
-    {
+      {
       List<Cardapio> cardapios = new();
       if (lojas is not null && lojas.Cardapios is not null 
           && lojas.Cardapios.Count > 0){

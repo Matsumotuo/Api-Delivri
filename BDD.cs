@@ -13,30 +13,44 @@ public class BDD :  DbContext{
 
    protected override void OnModelCreating(ModelBuilder mb){
 
-        /*mb.Entity<Endereco>() // relacionamento entre usuario e endereco
-        .HasMany(e => e.Usuarios)
-        .WithMany(u => u.Enderecos)
+       mb.Entity<Usuario>()
+        .HasMany(u => u.Enderecos)
+        .WithMany(e => e.Usuarios)
         .UsingEntity<Dictionary<string, object>>(
             "UsuarioEndereco",
-            j => j.HasOne<Usuario>().WithMany().HasForeignKey("UsuarioId"),
-            j => j.HasOne<Endereco>().WithMany().HasForeignKey("EnderecoId")
-        );*/
+            j => j.HasOne<Endereco>()
+                  .WithMany()
+                  .HasForeignKey("EnderecoId")
+                  .OnDelete(DeleteBehavior.Cascade),
+            j => j.HasOne<Usuario>()
+                  .WithMany()
+                  .HasForeignKey("UsuarioId")
+                  .OnDelete(DeleteBehavior.Cascade),
+            je =>
+            {
+                je.HasKey("UsuarioId", "EnderecoId");
+                je.ToTable("UsuarioEndereco");
+            });
 
-        mb.Entity<Loja>()
-            .HasMany(l => l.Cardapios)
-            .WithMany(c => c.Lojas)
-            .UsingEntity<Dictionary<string, object>>(
-                "LojaCardapio",
-                j => j.HasOne<Cardapio>().WithMany().HasForeignKey("CardapioId"),
-                j => j.HasOne<Loja>().WithMany().HasForeignKey("LojaId"),
-                je =>
-                {
-                    je.HasKey("LojaId", "CardapioId");
-                    je.ToTable("LojaCardapio");
-                }
-            );
+         mb.Entity<Loja>()
+        .HasMany(l => l.Cardapios)
+        .WithMany(c => c.Lojas)
+        .UsingEntity<Dictionary<string, object>>(
+            "LojaCardapio",
+            j => j.HasOne<Cardapio>()
+                  .WithMany()
+                  .HasForeignKey("CardapioId")
+                  .OnDelete(DeleteBehavior.Cascade),
+            j => j.HasOne<Loja>()
+                  .WithMany()
+                  .HasForeignKey("LojaId")
+                  .OnDelete(DeleteBehavior.Cascade),
+            je =>
+            {
+                je.HasKey("LojaId", "CardapioId");
+                je.ToTable("LojaCardapio");
+            });
     }
-
     //tabelas do banco de dados ficam junto no banco de dados
     public DbSet<Loja> Loja  => Set<Loja>();
 
@@ -48,5 +62,4 @@ public class BDD :  DbContext{
 
     public DbSet<Endereco> Endereco => Set<Endereco>(); 
     //add as outras tabelas
-
 }

@@ -6,7 +6,7 @@ public static class UsuarioApi{
 
         group.MapGet("/usuarios", async (BDD db) => {
 
-            return await db.Usuario.ToListAsync();
+            return await db.Usuario.Include(c => c.Enderecos).ToListAsync();
         });
 
 
@@ -20,6 +20,10 @@ public static class UsuarioApi{
         //recebe os dados, as informações
         group.MapPost("/novousuer", async (Usuario usuarios, BDD db) =>
         {
+            Console.Write($"Usuario: {usuarios}");
+
+            usuarios.Enderecos = await SalvarEnde(usuarios, db);
+
             db.Usuario.Add(usuarios);
             //insert into
             await db.SaveChangesAsync();
@@ -27,14 +31,41 @@ public static class UsuarioApi{
             return Results.Created($"/usuarios/{usuarios.Id}", usuarios);
         });
 
-        group.MapPut("/trocaruser/{id}", async (int id, Usuario CardapioAlterado, BDD db) =>
+        async Task<List<Endereco>> SalvarEnde(Usuario usuarios, BDD db)
+      {
+      List<Endereco> Enderecos = new();
+      if (usuarios is not null && usuarios.Enderecos is not null 
+          && usuarios.Enderecos.Count > 0){
+
+        foreach (var Endereco in usuarios.Enderecos)
+        {
+          Console.WriteLine($"Endereco: {Enderecos}");
+          if (Endereco.Id > 0)
+          {
+            var dExistente = await db.Endereco.FindAsync(Endereco.Id);
+            if (dExistente is not null)
+            {
+              Enderecos.Add(dExistente);
+            }
+          }
+          else
+          {
+            Enderecos.Add(Endereco);
+          }
+        }
+      }
+      return Enderecos;
+    }
+
+
+        group.MapPut("/trocaruser/{id}", async (int id, Usuario EnderecoAlterado, BDD db) =>
         {
             // select * from usuario where Id = ?
             var usuarios = await db.Usuario.FindAsync(id);
             if (usuarios == null) return Results.NotFound();
 
-            usuarios.NomeUser = CardapioAlterado.NomeUser;
-            usuarios.UserAvalicao = CardapioAlterado.UserAvalicao;
+            usuarios.NomeUser = EnderecoAlterado.NomeUser;
+            usuarios.UserAvalicao = EnderecoAlterado.UserAvalicao;
             
           
             // update from ...

@@ -11,10 +11,4 @@ public class Cardapio{
 
     public List<Loja>? Lojas { get; set; }
 
-   /* public Cardapio (int Item, String ItemNome, float Preco){
-        this.Item = Item;
-        this.ItemNome = ItemNome;
-        this.Preco = Preco;
-        List<Lojas> loja = new List<Lojas> ();
-    }*/
 }

@@ -6,7 +6,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace delivri.Migrations
 {
     /// <inheritdoc />
-    public partial class VersaoInicial : Migration
+    public partial class AddTabelas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -99,12 +99,12 @@ namespace delivri.Migrations
                 name: "LojaCardapio",
                 columns: table => new
                 {
-                    CardapioId = table.Column<int>(type: "int", nullable: false),
-                    LojaId = table.Column<int>(type: "int", nullable: false)
+                    LojaId = table.Column<int>(type: "int", nullable: false),
+                    CardapioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LojaCardapio", x => new { x.CardapioId, x.LojaId });
+                    table.PrimaryKey("PK_LojaCardapio", x => new { x.LojaId, x.CardapioId });
                     table.ForeignKey(
                         name: "FK_LojaCardapio_Cardapio_CardapioId",
                         column: x => x.CardapioId,
@@ -120,18 +120,45 @@ namespace delivri.Migrations
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "UsuarioEndereco",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    EnderecoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UsuarioEndereco", x => new { x.UsuarioId, x.EnderecoId });
+                    table.ForeignKey(
+                        name: "FK_UsuarioEndereco_Endereco_EnderecoId",
+                        column: x => x.EnderecoId,
+                        principalTable: "Endereco",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UsuarioEndereco_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
             migrationBuilder.CreateIndex(
-                name: "IX_LojaCardapio_LojaId",
+                name: "IX_LojaCardapio_CardapioId",
                 table: "LojaCardapio",
-                column: "LojaId");
+                column: "CardapioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsuarioEndereco_EnderecoId",
+                table: "UsuarioEndereco",
+                column: "EnderecoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Endereco");
-
             migrationBuilder.DropTable(
                 name: "LojaCardapio");
 
@@ -139,13 +166,19 @@ namespace delivri.Migrations
                 name: "Pedido");
 
             migrationBuilder.DropTable(
-                name: "Usuario");
+                name: "UsuarioEndereco");
 
             migrationBuilder.DropTable(
                 name: "Cardapio");
 
             migrationBuilder.DropTable(
                 name: "Loja");
+
+            migrationBuilder.DropTable(
+                name: "Endereco");
+
+            migrationBuilder.DropTable(
+                name: "Usuario");
         }
     }
 }
